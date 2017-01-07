@@ -69,12 +69,30 @@ def predictions_0(data):
     predictions=predictions_0(data)
     
     '''
-    
-'   
+    Question 1
+    Using the RMS Titanic data,how accurate would a prediction be that none of the passengers survived?
+    Hint:Run the code cell below to see the accuracy of this prediction.
+    '''
     print accuracy_score(outcomes,predictions)
     
-    survival_stats(data,outcomes,'Sex')
-    
+   
+'''
+Answer:It would be 61.62% accurate to predict that none of the passengers survived.
+Let's take a look at whether the feature Sex has any indication of survival rates among passengers using the survival_stats
+function.This function is defined in the titanic_visualziations.py Python script included with this project.The first tow
+indicates which feature we want to plot survival statistics across.
+Run the code cell below to plot the survival outcomes of passengers based on their sex.
+'''
+survival_stats(data,outcomes,'Sex')
+
+'''
+Examining the survival statistics,a large majority of males did not survive the ship sinking.Howere, a majority of females
+did survive the ship sinking.Let's build on our previous prediction:If a passenger was female,then we will predict that they survived.Otherwise,we will predict the passenger did not survive.
+Fill in the missing code below so that the function will make this prediction
+Hint:You can access the values of each feature for a passenger like a dictionary.For example,passenger['Sex'] is the sex of
+the passneger.
+'''    
+
 def predictions_1(data):
         """Model with one feature:
             -Predict a passenger survived if they are female."""
@@ -91,6 +109,101 @@ def predictions_1(data):
 #Make the predictions
 predictions=predictions_1(data)//78.68%
 
-
+'''
+Question 2
+How accurate would a prediction be that all female passengers survived and the remaining passengers did not survive?
+Hint；Run the code cell below to see the accuracy of this prediction
+'''
         
-    
+print accuracy_score(outcomes,predictions)
+
+
+'''
+Answer:It would be 78.68% accurate to predict that all female passengers survived and remaining passengers did not survive.
+Using just the Sex feature for each passenger,we are able to increate the accuracy of our predictions by a significant margin.Now,let's consider using an additional feature to see if we can furthre impive our predictions.Consider,for example,all of the male at the Age of each male,by again using the survival_stats function.This time,we will use a fourth 
+parameter to filter out the data so that only passengers with the Sex 'male ' will be included
+Run the code cell below to plot the survival outcomes of male passengers based on their age
+
+'''
+
+survival_stats(data,outcomes,'Age',["Sex=='male'"])
+
+'''
+Examining the surival statistics,the majority of males younger then 10 survived the ship sinking,whereas most males age 10
+or older did nnot survive the ship sinking.Let's continue to bulid on our previous prediction:If a passenger was female,then we will predict they survive.If a passenger was male and younger than 10,then we will also predict they survive.
+Otherwise,we will predict thye do not survive.
+Fill in the missing code below so that the function will make this prediction
+Hint:You can start your implementation of this function using the prediction code you wrote earlier form predictions_1
+'''
+
+def predictions_2(data):
+    """Model with two features:
+        -Predict a passenger survived if they are female.
+        -Predict a passenger survived if they are male and younger than 10."""
+    predictions=[]
+    for _,passenger in data.iterrows():
+        if passenger['Sex']=='female' or passenger['Sex']=='male' and passenger['Age']<10"
+            predictions.append(1)
+        else:
+            predictions.append(0)
+    #Return our predictions
+    return pd.Series(predictions)
+#Make the predictions
+predictions=predictions_2(data)
+
+
+'''
+Question3
+How accurate would a prediction be that all female passengers and all male passengers younger thant 10 survived?
+Hint:Run the code cell below to see the accuracy of this prediction.
+'''
+
+print accuracy_score(outcomes,predictions)
+
+'''
+Answer:It would be 79.35% accurate to predict that all female passengers and all male passengers younger than 10 survived
+add the feature Age as a condition in conjunction with Sex imporves the accuracy by a small margin more than with simply 
+using the feature Sex alone.Now it is your turn:Find a series of features and conditions to split the data on to obtain an outcome prediction accuracy of at leat 80%.This may require multiple features and multiple levels of conditional statements
+to succeed.You can use the same feature multiple time with different conditions
+Pclass,Sex,Age,SibSp,and Parch are some suggested features to try
+Use the survival_stats function below to examine various survival statistic
+Hint:To use mulitple filter conditons,put each conditon in the list passed as the last argument.Example:["Sex=='male'","Age<18"]
+
+'''
+survival_stats(data,outcomes,'SibSp',["Sex=='male'","Age<16"])
+
+'''
+After exploring the survival statistics visualization,fill in the missing code below so that the function will make your 
+prediction.Make sure to keep track of the various features and conditions you tried before arriving at your final prediction model 
+Hint:You can start your implementation of this function using the prediction code you wrote earlier from predictions_2
+
+'''
+
+def predictions_3(data):
+    """Model with multiple features.Makes a prediction with an accuracy of at least 90%"""
+    predictions=[]
+    for _,passenger in data.iterrows():
+        if passenger['Sex']=='female' or passenger['Sex']=='male' and passenger['Age']<16 and passenger['SibSp']<2:
+            predictions.append(1)
+        else:
+            predictions.append(0)
+    #Return our predictions
+    return pd.Series(predictions)
+#Make the predictions
+predictions=predictions_3(data)
+
+
+
+'''
+Question 4
+Describe the steps you took to implement the final predcition model so that it got an accuracy of at leat 80%.What features
+did you lool at?Were certain features more informative than others?Which conditions did you use to split the survival outcomes in the data?How accurate are your predictions?
+Hint:Run the code cell below to see the accuracy of your predictions.
+
+'''
+print accuarcy_score(outcomes,predictions)
+
+'''
+Answer:I had to look at all the suggested feature a
+'''
+
