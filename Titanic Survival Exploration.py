@@ -204,6 +204,35 @@ Hint:Run the code cell below to see the accuracy of your predictions.
 print accuarcy_score(outcomes,predictions)
 
 '''
-Answer:I had to look at all the suggested feature a
+Answer:I had to look at all the suggested feature and try them out one by one.Most of the suggested features don't really help except the
+number of sibiling or spouses of the passenger,which is what I settled on.If the passenger was male and under 16 and had less than 2 
+sibilings then tye were more likely to survive,and if the passenger was young male but had more sibilings then they probably did not 
+survive.This prediction had an accuracy of 80.58%
+
+Conclusion
+Congratulations on what you are accomplished here! You should now have an alogrithm for predicting whether or not a person survived the 
+Titanic disaster,based on thier features,In fact,what you have done here is a manual implementation of a simple machine learing model,
+the decision tree.In a decision tree,we split the data into smalller groups,one feature at a time.Each of these splits will result in 
+group that are more homogeneous than the original group,so that our predictons become more accurate.The advantage of having a computer do 
+things for us is that it will be more echaustive and more precise than our manual exploration abouve.This link provides
+another introuction into machine learning using a decision tree
+
+A decision tree is just one of many alogrithms that fall into the category of supervised learning.In this Nanodegree,you will learn about
+supervised learning techniques first.In supervised learning,we concern ourselves with using features of data to predict or model things
+with objective outcome labels.That is ,each of our datapoints has a true outcome value,wether that be category label like survival 
+in the Titanic dataset,or a continuous values like predicting the price of a house.
+
+Question 5
+Can you think of an example of where supervised learning can be applied?
+Hint:Be sure to note the outcome variable to be predicted and at least two features that might be useful for making the predictions.
+Answer:One example would be classifying an vehichle to be different categories of cars.One feature would be the number of doors on the 
+vehicle,and other features can include the weight and height of the vehicle.These features can help the algorithm predict if it is 
+a mininvan or sprits car
+
+Tip: If we want to share the results of our analysis with others,we are not limited to giving them a copy of the iPython Notebook(.ipynb)
+file.We can also export the Notebook output in a form that can be opened even for those without Python installed.From the File menu in the
+upper left,go to the Download as submenu.You can then choose a different format that can be viewed more generally,such as HTML
+(.html) or PDF (.pdf).You may need additional packages or software to perform these exports.
+
 '''
 
