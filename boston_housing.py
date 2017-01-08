@@ -89,8 +89,7 @@ def shuffle_split_data(X,y):
     #Shuffle and split the data
     X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.3,random_state=42)
     #Return the training and testing data subsets
-    return X_train,y_train,X_test,y_test
-    #Test shuffle_split_data
+    return X_train,y_train,X_test,y_test    #Test shuffle_split_data
 try：
     X_train,y_train,X_test,y_test=shuffle_split_data(housing_features,housing_prices)
     print "Successfully shuffled and split the data!"
@@ -100,8 +99,7 @@ except:
 Question 3
 Why do we split the data into training and testing subsets for our modle?
 Answer:Our model has to perform well when fed previously unseen data.We will train the mmodel with training set and so performance 
-measures on that smae set will not be representative of the quality of the modle.We need to evaluate its performance on a dataset that 
-was not used to train the modle:the testing subset.
+measures on that smae set will not be representative of the quality of the modle.We need to evaluate its performance on a dataset that was not used to train the modle:the testing subset.
 
 Step 3
 In the code block below ,you wil need to implement code so that the performance_metric function does the following:
@@ -109,9 +107,9 @@ In the code block below ,you wil need to implement code so that the performance_
 You will need to first choose an appropriate performance metric for this problem.See the sklearn metrics documentation to vies a list
 of avaiable metric functions.
 Hint:Look at the question below to see a list of the metrics that were covered in the supporting course for this project
-Once you have determined which metric you will use,remember ot include the necessary import statement as well!
+fOnce you have determined which metric you will use,remember ot include the necessary import statement as well!
 Ensure that you habe executed the code block once you are done.You will know the performance_metric function is working if the 
-statment "Successfully performed a metric calculation !" is printed
+statment "Successfully performed a metric calculation !" is print
 
 '''
 #Put any import statement you need for this code block here
@@ -130,7 +128,7 @@ except:
 '''
 Question 4
 Which performance metric below did you find was most appropriate for predicting housing prices and analyzing the total error.Why?
-Accuracy
+fAccuracy
 Precision
 Recall
 F1 Score
@@ -149,20 +147,44 @@ always the case that a default parameter for a function is the appropriate setti
 Since you are using sklearn functions,rememeber to include the necessary import statements below as well!
 Ensure that you habe executed the code block once you are done.You will know the fit_model function is working if the datement 
 "Successfully fit a model  to the data" is printed
-
-
-
-
-
-
-
-
-
-
-
-
 '''
+#Put any import statements you need for this code block
+form sklearn import metrics
+from sklearn import grid_search
+def fit_model(X,y):
+     """Tunes a decision tree regressor model using GridSearchCV on the input data X and targetlabels y and returns this optimal model"""
+     #Create a decision tree regressor object
+     regressor=DecisionTreeRegressor()
+     #Set up the parameters we wich to tune
+     parameters={'max_depth':(1,2,3,4,5,6,7,8,9,10)}
+     #Make an appropriate scoring function
+     scoring_function=metrics.make_scorer(metrics.mean_squared_error,greater_is_better=False)
+     #Make the GridSearchCV(regressor,parameters,scoring=scoring_function)
+     #Fit the learner to the data to obtain the optimal model with tuned parameters
+     reg.fit(X,y)
+     #Return the optimal model
+     return reg.best_estimator_
+#Test fit_modle on entire dataset
+try:
+     reg=fit_model(housing_features,housing_prices)
+     print "Successfully fit a model!"
+except:
+     print "Something went wrong with fitting a model"
+     
+ Question 5
+What is the grid search algorithm and when is it applicable?
+Answer:Grid search algorithms are useful when applying models that habe a tuning parameter.Examples of models with parameters include the 
+number of splits in a tree or the degrees of a polynomial used for fitting.In these cases grid search allows us to find an optimal value
+for the parameter by generating models with specified values for the parameters and finding the best one 
 
+Question 6
+What is cross-validation,and how is it performed on a model?Why would cross-validation be helpful when using grid search?
+Answer:cross_validation regers to a technique used to generate models that will perform accurately on unseen data.In a real world 
+scenario we might habe to train our models with just one set of data.It is common practice to split this set into two subsets,one for
+training,one for evaluating performance.Cross validation allows for achieving the vest possibe results by splitting our data set into
+learning and testing subsets multiple times,populating each group differently at every iteration and training and testing our model.
+Cross-
+     
 
 
 
