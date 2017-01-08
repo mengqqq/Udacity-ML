@@ -131,7 +131,7 @@ Which performance metric below did you find was most appropriate for predicting 
 fAccuracy
 Precision
 Recall
-F1 Score
+’F1 Score
 Mean Squared Error (MSE)
 Mean Absolute Error(MAE)
 Answer:I chose to use the mean squared error.Of the avaiable list,only the last two apply to regression,the other four being useful for 
