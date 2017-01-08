@@ -144,12 +144,13 @@ Create a scoring function using the same  performance metric as in Step 2.See th
 Build a GridSearchCV object using regressor,parameters,and scoreing_function,See the sklearn documentation on GridSearchCV
 When building the scoring function and GridSearchCV object,be sure that you read the parameters documentation thoroughly.It is nnot 
 always the case that a default parameter for a function is the appropriate setting for the problem you are working on 
+
 Since you are using sklearn functions,rememeber to include the necessary import statements below as well!
 Ensure that you habe executed the code block once you are done.You will know the fit_model function is working if the datement 
 "Successfully fit a model  to the data" is printed
 '''
 #Put any import statements you need for this code block
-form sklearn import metrics
+uform sklearn import metrics
 from sklearn import grid_search
 def fit_model(X,y):
      """Tunes a decision tree regressor model using GridSearchCV on the input data X and targetlabels y and returns this optimal model"""
@@ -159,7 +160,7 @@ def fit_model(X,y):
      parameters={'max_depth':(1,2,3,4,5,6,7,8,9,10)}
      #Make an appropriate scoring function
      scoring_function=metrics.make_scorer(metrics.mean_squared_error,greater_is_better=False)
-     #Make the GridSearchCV(regressor,parameters,scoring=scoring_function)
+l     #Make the GridSearchCV(regressor,parameters,scoring=scoring_function)
      #Fit the learner to the data to obtain the optimal model with tuned parameters
      reg.fit(X,y)
      #Return the optimal model
@@ -169,23 +170,73 @@ try:
      reg=fit_model(housing_features,housing_prices)
      print "Successfully fit a model!"
 except:
-     print "Something went wrong with fitting a model"
+a     print "Something went wrong with fitting a model"
      
+
+'''
  Question 5
 What is the grid search algorithm and when is it applicable?
 Answer:Grid search algorithms are useful when applying models that habe a tuning parameter.Examples of models with parameters include the 
 number of splits in a tree or the degrees of a polynomial used for fitting.In these cases grid search allows us to find an optimal value
 for the parameter by generating models with specified values for the parameters and finding the best one 
 
-Question 6
+CQuestion 6
 What is cross-validation,and how is it performed on a model?Why would cross-validation be helpful when using grid search?
 Answer:cross_validation regers to a technique used to generate models that will perform accurately on unseen data.In a real world 
 scenario we might habe to train our models with just one set of data.It is common practice to split this set into two subsets,one for
 training,one for evaluating performance.Cross validation allows for achieving the vest possibe results by splitting our data set into
 learning and testing subsets multiple times,populating each group differently at every iteration and training and testing our model.
-Cross-
-     
+Cross-validation is helpful when using grid search because we want to find the best possible parameters for our modle and by just doing
+a simple one-time split into training and data we may not find the optimum parameters for our problem,but just the best for that 
+particular training set
 
+Checkpoint
+You have now successfully completed your last code implementation section.Pat yourself on the back!All of your functions written above
+will be executed in the remaining sections below,and questions will be asked about various results for you to analyze.To prepare the 
+Analysis ans Prediction sections,you will need to intialize the two functions below.Remember,there is no need to implement any more
+code,so sit back and execute the code blocks!Some code comments are provided if you find yourself interested in the functionality.
+
+'''
+def learning_curves(X_train,y_train,X_test,y_test):
+     """Calculates the performance of several models with varying sizes of training data.
+        The learning and testing error rates for each model are then plotted"""
+     print "Creating learning curve graphs for max_depths of 1,3,6,and 10...."
+     #Create the figure window
+     fig=pl.figure(figsize=(10,8))
+     #We will vary the training set size so that we have 50 different sizes
+     sizes=np.rint(np.linspace(1,len(X_train),50)).astype(int)
+     train_err=np.zeros(len(sizes))
+     test_err=np.zeros(len(sizes))
+     #Create four different models based on max_depth
+     for k,depth in enumerate([1,3,6,10,30,60,100,300]):
+          for i,s in enumerate(sizes):
+               #Setup a decision tree regressor so that it learns a tree with max_depth=depth
+               regressor=DecisionTreeRegressor(max_depth=depth)
+               #Fit the learnet to the training data
+               regressor.fit(X_train[:s],y_train[:s])
+               #Find the performance on the training set
+               train_err[i]=performance_metric(y_train[:s],regressor.predict(X_train[:s]))
+               #Find the performance on the training set
+               train_err[i]=performance_metric(y_test,regressor.predict(X_test))
+           #subplot the learning curve graph
+          ax=fig.add_subplot(4,2,k+1)
+          ax.plot(sizes,test_err,lw=2,label='Testing Error')
+          ax.plot(sizes,train_err,lw=2,label='Training Error')
+          ax.legend()
+          ax.set_title('max_depth=%s'%(depth))
+          ax.set_xlabel('Number of Data Points in Training Set')
+          ax.set_ylabel('Total Error')
+          ax.set_xlim([0,len(X_train)])
+      #Visual aesthetics
+     fig.suptitle('Decision Tree Regressor Learning Performances',fontsize=18,y=1.03)
+     fig.tight_layout()
+     fig.show()
+def model_complexity(X_train,y_train,X_test,y_test):
+     """
+     
+     
+     
+     
 
 
 
