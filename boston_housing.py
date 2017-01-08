@@ -24,8 +24,7 @@ Familiarizing yourself with the data through an explorative process is a fundame
 Step 1
 In the code block below ,use the imported numpy library to calculate the requested statistics.You will need to replace each None you
 find with the appropriate numpy coding for the proper statistic to be printed.Be sure to execute the code block each time to test is your
-implementation is working successfully.The print statements will show the statistics you calculate!
-'''
+implementation is working successfully.The print statements will show the statistics you calculate!'''
 #Number of houses in the dataset
 total_houses=housing_features.shape[0]
 #Number of features in the dataset
@@ -34,7 +33,7 @@ total_features=housing_features.shpae[1]
 minimun_price=np.min(housing_prices)
 #Maximun housing value in the dataset
 maximum_price=np.max(housing_prices)
-#Mean house value of the dataset
+"#Mean house value of the dataset
 mean_price=np.mean(housing_prices)
 #Median house value of the dataset
 median_price=np.median(housing_prices)
@@ -44,7 +43,7 @@ std_dev=np.std(housing_prices)
 print "Boston Housing dataset statistics (in $1000's):\n"
 print "Total number of houses:",totao_houses
 print "Total number of features:",total_features
-print "Minimum house price:",minimun_price
+"print "Minimum house price:",minimun_price
 print "Maximum house price:",maximum_price
 print "Mean house price:{0:.3f}".format(mean_price)
 print "Median house price:",median_price
@@ -75,7 +74,11 @@ In this second section of the project,you will begin to develop the tools necess
 accurately evaluate each modle's performance through the use of these tools helps to greatly reinforce the confidence in your predictions.
 Step2
 In the code block below,you will need to implement code so that the shuffle_split_data function does the following:
-r
+Randomly shuffle the input data X and target labels (housing values)y
+Split the data into training and testing subsets,holding 30% of the data for testing.
+If you use any functions not already acessible from the imported libraries above,remember to include your import statement below as well!
+Ensure that you habe executed the code block once you are done.You will know the shuffle_split_data function is working if the datament
+
 '''
 
 
